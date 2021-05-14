@@ -19,7 +19,6 @@ df <- subset(dfstorm,select = c("STATE__","STATE","EVTYPE","FATALITIES","INJURIE
 
 df <- df[1:547363,]
 
-df$STATE__ <- as.integer(df$STATE__)
 
 
 df_storm <- dfstorm[1:547363,]
@@ -154,4 +153,7 @@ with(or_crpdmg,barplot(CROPDMGTOTAL/1000000, names.arg = EVTYPE,
 with(or_propdmg,barplot(PROPTOTAL/1000000, names.arg = EVTYPE,
                         main = "Events that cause Property Damage",
                         ylab= "Damage Cost($million)", las=3, col="lightblue"))
+or_allresult <- allresult[order(-allresult$HEALTH),][1:10,]
 
+with(or_allresult,barplot(HEALTH,names.arg = EVTYPE,
+                       main = "Events that are harmful to our health",col="blue",las=3))
